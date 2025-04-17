@@ -1,0 +1,129 @@
+---
+description: 
+globs: D:\xampp\htdocs\crm
+alwaysApply: false
+---
+Below is a **reworked** version of the guidelines and example code **without** strict typing or typed properties. While these guidelines still encourage clean, modular code, all type declarations and `declare(strict_types=1);` statements have been removed to accommodate your preference.
+
+---
+
+## Key Principles
+
+- **Conciseness & Accuracy:**  
+  Write concise, technical responses with accurate PHP examples.
+
+- **Code Quality & Best Practices:**  
+  - Emphasize object-oriented programming and adhere to SOLID principles.  
+  - Favor iteration and modularization to reduce code duplication.  
+  - Use descriptive variable and method names.
+
+- **Directory & File Naming:**  
+  Organize your project with clear directory names using lowercase with dashes (e.g., `src/http/controllers`).
+
+- **Dependency Management:**  
+  Use Composer for dependency management and autoloading.
+
+- **Dependency Injection & Service Containers:**  
+  Prefer dependency injection to decouple your code and facilitate testing. Consider implementing a simple service container for managing class dependencies.
+
+---
+
+## PHP Best Practices (for Plain PHP)
+
+- **Language Features & Standards:**  
+  - Use modern PHP 8+ features (e.g., nullsafe operator, named arguments) where it makes sense.  
+  - Follow PSR-12 coding standards for formatting and naming.
+
+- **MVC & Directory Structure:**  
+  - Adopt an MVC-like structure even without a full framework.  
+  - Example structure:
+    ```
+    /src
+      /http
+        /controllers
+        /middleware
+      /models
+      /views
+      /services
+    /config
+    /public
+    /tests
+    ```
+    
+- **Error Handling & Logging:**  
+  - Utilize try-catch blocks for expected exceptions.  
+  - Create custom exceptions where necessary.  
+  - Integrate a logging library (e.g., Monolog) for consistent error logging.
+
+- **Routing & Request Handling:**  
+  - Implement or adopt a lightweight router for handling HTTP requests.  
+  - Validate input using dedicated validation classes or libraries.
+
+- **Database Interactions:**  
+  - Use PDO or a database abstraction layer to manage database connections securely.  
+  - Implement the Repository pattern for the data access layer.  
+  - Structure your database migrations and seeders using tools like Phinx or custom scripts.
+
+- **Caching & Performance:**  
+  - Use caching mechanisms (e.g., Redis or filesystem-based caching) to improve performance.  
+  - Optimize your queries and implement proper indexing on your database.
+
+- **Security & Testing:**  
+  - Implement CSRF protection, input sanitization, and secure authentication/authorization practices.  
+  - Utilize PHPUnit or similar tools for unit and integration testing.
+
+- **Modularity & Reusability:**  
+  - Use namespaces and autoloading to manage your classes.  
+  - Write modular code to ease maintenance and encourage reusability.
+
+- **API & Localization:**  
+  - If exposing an API, consider implementing versioning and resource transformations.  
+  - Use appropriate localization strategies for multi-language support.
+
+---
+
+## Example: Simple Controller in Plain PHP
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Services\UserService;
+use App\Exceptions\UserNotFoundException;
+
+class UserController
+{
+    // Removed typed property
+    private $userService;
+
+    // Dependency Injection via constructor (no typed parameter)
+    public function __construct($userService)
+    {
+        $this->userService = $userService;
+    }
+
+    // No typed parameter for $userId
+    public function show($userId)
+    {
+        try {
+            $user = $this->userService->findUserById($userId);
+            echo json_encode(['user' => $user]);
+        } catch (UserNotFoundException $e) {
+            http_response_code(404);
+            echo json_encode(['error' => 'User not found']);
+        } catch (\Exception $e) {
+            http_response_code(500);
+            echo json_encode(['error' => 'An error occurred']);
+        }
+    }
+}
+```
+
+### Notes on the Example
+
+- **No `declare(strict_types=1);`:** Removed to align with your preference.  
+- **No Typed Properties or Parameters:** The constructor and method parameters are untyped.  
+- **Error Handling & Logging:** Demonstrates basic exception handling.  
+
+You can apply the same approach—removing type declarations—across all other classes (services, repositories, models) while still maintaining a clean, organized architecture. This way, you preserve the flexibility you prefer without losing the structure and maintainability of an MVC-like design.

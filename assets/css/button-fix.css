@@ -1,0 +1,69 @@
+/**
+ * Button Fix CSS
+ * 
+ * This CSS ensures that the move buttons are properly styled and visible.
+ */
+
+/* Make sure move buttons are visible */
+.move-business {
+    opacity: 1 !important;
+    cursor: pointer !important;
+}
+
+/* Style for move buttons when not disabled */
+.move-business:not([disabled]) {
+    background-color: #0d6efd !important;
+    color: white !important;
+    border-color: #0d6efd !important;
+}
+
+/* Style for move to Cold Leads button */
+.move-business[data-to="coldLeads"]:not([disabled]) {
+    background-color: #0dcaf0 !important;
+    border-color: #0dcaf0 !important;
+}
+
+/* Style for move to Warm Leads button */
+.move-business[data-to="warmLeads"]:not([disabled]) {
+    background-color: #fd7e14 !important;
+    border-color: #fd7e14 !important;
+}
+
+/* Style for move to Currently Working With button */
+.move-business[data-to="currentlyWorkingWith"]:not([disabled]) {
+    background-color: #198754 !important;
+    border-color: #198754 !important;
+}
+
+/* Style for disabled buttons */
+.move-business[disabled] {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    opacity: 0.65 !important;
+}
+
+/* When a lead is selected, make sure buttons are visible */
+body.lead-selected .move-business {
+    opacity: 1 !important;
+    cursor: pointer !important;
+}
+
+/* Add a highlight to the selected row */
+tr.selected {
+    background-color: #e0f7fa !important;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Style for the move buttons container */
+#moveButtonsContainer {
+    margin-top: 20px;
+}
+
+/* Style for the selected lead message */
+#selectedLeadMessage {
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #e0f7fa;
+    border: 1px solid #b2ebf2;
+}

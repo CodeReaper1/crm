@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "John Doe",
+        "company_name": "ABC Company",
+        "website": "https:\/\/www.abccompany.com",
+        "phone_number": "123-456-7890",
+        "email": "john@abccompany.com",
+        "niche": "Mobile App Development",
+        "notes": "Initial contact made via email",
+        "business_description": "Software development firm specializing in mobile apps",
+        "category": "cold",
+        "assigned_to": null
+    },
+    {
+        "id": 2,
+        "business_name": "Test Company",
+        "niche": "Test Niche",
+        "email": "test@example.com",
+        "phone_numbers": "123-456-7890",
+        "website": "https:\/\/example.com",
+        "notes": "Test notes",
+        "status": "new",
+        "assigned_to": 1
+    }
+]
